@@ -18,7 +18,7 @@
 - **AI-powered chat guide** — Claude answers setup questions adapted to your exact hardware and OS
 - **Quick actions** — Speed estimates, quantization advice, use case suggestions
 - **Hardware upgrade suggestions** — Affiliate links for GPU upgrades when your specs fall short
-- **Zero backend** — Single HTML file, runs on any static host
+- **Secure backend proxy** — API key protected server-side via `proxy.php`, never exposed to the browser
 - **Dark mode** — Easy on the eyes during late-night model downloads
 
 ## 🚀 Self-hosting in 2 minutes
@@ -29,20 +29,20 @@
    cd canmypcrunai
    ```
 
-2. Edit `index.html` and set your API key:
-   ```js
-   const CLAUDE_API_KEY = 'sk-ant-YOUR_KEY_HERE';
+2. Copy the proxy template and add your API key:
+   ```bash
+   cp proxy.example.php proxy.php
    ```
-   Get a key at [console.anthropic.com](https://console.anthropic.com)
+   Edit `proxy.php` and replace `YOUR_KEY_HERE` with your key from [console.anthropic.com](https://console.anthropic.com)
 
-3. (Optional) Set your Amazon Associates tag:
+3. (Optional) Set your Amazon Associates tag in `index.html`:
    ```js
    const AMZN_TAG = 'yourtag-20';
    ```
 
-4. Upload `index.html` to any static host — Apache, Nginx, Vercel, Netlify, GitHub Pages.
+4. Upload **both** `index.html` and `proxy.php` to your server — Apache or Nginx with PHP 7.4+.
 
-> ⚠️ **Important:** The API key is exposed in the frontend in this setup. This is fine for personal/low-traffic use. For production, move it to a backend (see [CONTRIBUTING.md](CONTRIBUTING.md) for the roadmap item).
+> ⚠️ **Never commit `proxy.php` to a public repo** — it contains your API key. It's already in `.gitignore`.
 
 ## 🤝 Contributing
 
@@ -53,7 +53,7 @@ Some ideas to get you started:
 - Improve VRAM auto-detection accuracy
 - Add llama.cpp / LM Studio specific guides
 - Localize to Spanish, Chinese, French...
-- Move API key to a Vercel/Cloudflare Worker backend
+- Port the proxy to a Vercel / Cloudflare Worker for serverless deploys
 
 ## 💛 Support the project
 
@@ -61,8 +61,10 @@ This tool is free and open source. If it helped you run AI locally, consider sup
 
 | Platform | Link |
 |---|---|
-| 💳 Mercado Pago (LATAM) | [link.mercadopago.com.mx/xolotltech](https://link.mercadopago.com.mx/xolotltech) |
-| ☕ Ko-fi (International) | [ko-fi.com/xolotltech](https://ko-fi.com/xolotltech) |
+| 💳 Mercado Pago (LATAM) | [link.mercadopago.com.mx/donacioncanmypcrunai](https://link.mercadopago.com.mx/donacioncanmypcrunai) |
+| ☕Buy a coffee (International) | [buymeacoffee.com/xolotl_tech](https://buymeacoffee.com/xolotl_tech) |
+
+> ⚠️ **Official donation links only.** If you see different links in a fork or PR, please report it.
 
 ## 📦 Models included
 

@@ -113,13 +113,53 @@ nav {
 /* MAIN LAYOUT */
 .main {
   position: relative; z-index: 1;
-  max-width: 1100px; margin: 0 auto;
+  max-width: 1280px; margin: 0 auto;
   padding: 0 40px 80px;
   display: grid;
-  grid-template-columns: 360px 1fr;
+  grid-template-columns: 340px 1fr 260px;
   gap: 24px;
   align-items: start;
 }
+
+/* SIDEBAR */
+.sidebar {
+  display: flex; flex-direction: column; gap: 12px;
+  position: sticky; top: 72px;
+}
+.sidebar-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+.sidebar-card-title {
+  font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--muted);
+  font-family: var(--font-mono); margin-bottom: 10px;
+}
+.sidebar-card p {
+  font-size: 11px; color: var(--muted2);
+  font-family: var(--font-mono); line-height: 1.6; margin-bottom: 12px;
+}
+.sidebar-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; padding: 9px 14px;
+  border-radius: 7px; text-decoration: none;
+  font-family: var(--font-display); font-size: 12px; font-weight: 700;
+  transition: all 0.15s; margin-bottom: 6px;
+  border: 1px solid;
+}
+.sidebar-btn:last-child { margin-bottom: 0; }
+.sidebar-btn.green { background: var(--accent-dim); border-color: rgba(0,229,160,0.3); color: var(--accent); }
+.sidebar-btn.green:hover { background: rgba(0,229,160,0.2); }
+.sidebar-btn.blue  { background: var(--blue-dim); border-color: rgba(74,158,255,0.3); color: var(--blue); }
+.sidebar-btn.blue:hover  { background: rgba(74,158,255,0.2); }
+.sidebar-btn.mp    { background: rgba(0,158,227,0.08); border-color: rgba(0,158,227,0.3); color: #009ee3; }
+.sidebar-btn.mp:hover    { background: rgba(0,158,227,0.18); }
+.sidebar-btn.kofi  { background: rgba(255,94,105,0.08); border-color: rgba(255,94,105,0.25); color: #ff5e69; }
+.sidebar-btn.kofi:hover  { background: rgba(255,94,105,0.18); }
+.sidebar-divider { height: 1px; background: var(--border); margin: 10px 0; }
+.sidebar-icon { font-size: 20px; margin-bottom: 8px; display: block; }
 
 /* PANEL */
 .panel {
@@ -457,13 +497,15 @@ footer a:hover { color: var(--accent); }
 .main { animation: fadeUp 0.6s 0.1s ease both; }
 
 /* RESPONSIVE */
+@media (max-width: 1100px) {
+  .main { grid-template-columns: 320px 1fr; }
+  .sidebar { display: none; }
+}
 @media (max-width: 768px) {
   nav { padding: 14px 20px; }
   .hero { padding: 50px 20px 40px; }
   .main { grid-template-columns: 1fr; padding: 0 20px 60px; }
   .chat-panel { height: 520px; }
-  .xolotl-cta { padding: 0 20px; }
-  .xolotl-banner { flex-direction: column; text-align: center; }
   footer { flex-direction: column; gap: 8px; text-align: center; }
 }
 </style>
@@ -475,7 +517,7 @@ footer a:hover { color: var(--accent); }
     can my pc run <span>AI</span>?
     <div class="nav-badge">beta</div>
   </div>
-  <a href="https://xolotl.tech/contact" class="nav-cta" target="_blank">Need enterprise setup? →</a>
+  <!---<a href="https://xolotl.tech/contact" class="nav-cta" target="_blank">Need enterprise setup? →</a>-->
 </nav>
 
 <!-- HERO -->
@@ -621,39 +663,37 @@ footer a:hover { color: var(--accent); }
     </div>
   </div>
 
-</div>
+  <!-- SIDEBAR -->
+  <div class="sidebar">
 
-<!-- XOLOTL CTA -->
-<div class="xolotl-cta">
-  <div class="xolotl-banner">
-    <div class="xolotl-icon">🔧</div>
-    <div class="xolotl-text">
-      <strong>Need AI deployed in your business?</strong>
-      <p>Xolotl Tech builds and maintains local AI infrastructure for companies — from single-GPU setups to multi-node clusters. Custom models, integrations & support included.</p>
+    <!-- Xolotl CTA -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">🔧 Enterprise AI</div>
+      <span class="sidebar-icon">🏢</span>
+      <strong style="font-size:13px;font-weight:700;display:block;margin-bottom:6px">Need AI in your business?</strong>
+      <p>Xolotl Tech builds and maintains local AI infrastructure — from single-GPU setups to multi-node clusters.</p>
+      <a href="https://xolotl.tech/contact" class="sidebar-btn blue" target="_blank" rel="noopener">Talk to an expert →</a>
     </div>
-    <a href="https://xolotl.tech/contact" class="xolotl-btn" target="_blank">Talk to an expert →</a>
-  </div>
-</div>
 
-<!-- DONATE BANNER -->
-<div class="xolotl-cta" style="margin-bottom:16px">
-  <div class="xolotl-banner" style="background:rgba(245,166,35,0.05);border-color:rgba(245,166,35,0.2)">
-    <div class="xolotl-icon" style="background:rgba(245,166,35,0.1);border-color:rgba(245,166,35,0.2);font-size:20px">☕</div>
-    <div class="xolotl-text">
-      <strong style="font-size:14px">¿Te fue útil? Apoya el proyecto</strong>
-      <p>Esta herramienta es gratuita y open source. Si te ayudó a correr IA local, considera invitarnos un café — mantiene el servidor corriendo y nuevos modelos llegando.</p>
+    <!-- Donate -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">☕ Support the project</div>
+      <p>This tool is free & open source. If it helped you run AI locally, consider buying us a coffee.</p>
+      <a href="https://link.mercadopago.com.mx/donacioncanmypcrunai" class="sidebar-btn mp" target="_blank" rel="noopener">💳 Mercado Pago</a>
+      <a href="https://buymeacoffee.com/xolotl_tech" class="sidebar-btn kofi" target="_blank" rel="noopener">☕ Buy me a coffee</a>
+      <div class="sidebar-divider"></div>
+      <a href="https://github.com/Xolotl-Company/can-my-pc-run-ai.git" class="sidebar-btn green" target="_blank" rel="noopener">★ Star on GitHub</a>
     </div>
-    <div style="display:flex;flex-direction:column;gap:8px;flex-shrink:0">
-      <a href="https://link.mercadopago.com.mx/xolotltech" class="xolotl-btn" target="_blank" rel="noopener"
-         style="background:rgba(0,158,227,0.1);border-color:rgba(0,158,227,0.3);color:#009ee3;text-align:center">
-        💳 Mercado Pago
-      </a>
-      <a href="https://ko-fi.com/xolotltech" class="xolotl-btn" target="_blank" rel="noopener"
-         style="background:rgba(255,94,105,0.08);border-color:rgba(255,94,105,0.25);color:#ff5e69;text-align:center">
-        ☕ Ko-fi
-      </a>
+
+    <!-- Stats / open source badge -->
+    <div class="sidebar-card" style="border-color:rgba(0,229,160,0.15)">
+      <div class="sidebar-card-title">Open source</div>
+      <p style="margin-bottom:8px">MIT license · contributions welcome</p>
+      <a href="https://github.com/Xolotl-Company/can-my-pc-run-ai.git" class="sidebar-btn green" target="_blank" rel="noopener" style="font-size:11px">View source on GitHub →</a>
     </div>
+
   </div>
+
 </div>
 
 <!-- FOOTER -->
@@ -671,7 +711,7 @@ footer a:hover { color: var(--accent); }
 <script>
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
 // Replace with your actual key before deploying, then move to backend
-const CLAUDE_API_KEY = 'YOUR_CLAUDE_API_KEY_HERE';
+const CLAUDE_API_KEY = '';
 
 // Amazon Associates tag — replace with yours once approved
 const AMZN_TAG = 'xolotltech-20';
@@ -933,10 +973,10 @@ async function sendMessage() {
 // ─── CLAUDE API ───────────────────────────────────────────────────────────────
 async function callClaude(systemPrompt, messages) {
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/proxy.php', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': CLAUDE_API_KEY, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system: systemPrompt, messages })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 1000, system: systemPrompt, messages })
     });
     const data = await res.json();
     return data.content?.[0]?.text || 'Connection error. Please try again.';

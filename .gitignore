@@ -2,3 +2,9 @@
 *.env
 .env.local
 config.local.js
+proxy.php
+*.log
+node_modules/
+.vscode/
+.idea/
+Thumbs.db
